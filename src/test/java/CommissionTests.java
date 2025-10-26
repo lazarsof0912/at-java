@@ -1,6 +1,6 @@
 import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.*;
+
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 
@@ -22,6 +22,42 @@ import org.openqa.selenium.By;
         @Test
         void test02() {
             open("https://slqa.ru/cases/fc/v01");
+            $(By.name("sum")).setValue("10");
+            sleep(5_000);
+            $(By.name("submit")).click();
+            sleep(5_000);
+        }
 
+        @Test
+        void test03() {
+            open("https://slqa.ru/cases/fc/v01");
+            $(By.name("sum")).setValue("100000");
+            sleep(5_000);
+            $(By.name("submit")).click();
+            sleep(5_000);
+        }
+
+        @Test
+        void test04() {
+            open("https://slqa.ru/cases/fc/v01");
+            $(By.name("sum")).setValue("9000");
+            sleep(5_000);
+            $(By.name("submit")).click();
+            sleep(5_000);
+        }
+
+        @Test
+        void test05() {
+            open("https://slqa.ru/cases/fc/v01");
+            $(By.name("sum")).setValue("2000");
+            sleep(5_000);
+            $(By.name("submit")).click();
+            sleep(5_000);
+            $(By.name("sum")).clear();
+            sleep(5_000);
+            $(By.name("sum")).setValue("500");
+            sleep(5_000);
+            $(By.name("submit")).click();
+            sleep(5_000);
         }
 }

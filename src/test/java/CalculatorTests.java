@@ -77,4 +77,34 @@ public class CalculatorTests {
                 .shouldBe(visible)
                 .shouldHave(text("5 558 524,60"));
     }
+
+    @Test
+    void test02ByCreditSum() {
+        Configuration.pageLoadStrategy = "eager";
+        Selenide.open("https://calcus.ru/kalkulyator-ipoteki");
+
+        getWebDriver().manage().window().maximize();
+
+// Прейти на закладку по сумме кредита
+        $x("//a[contains(.,'По сумме кредита')]").click();
+
+// Заполнить поле сумма кредита 2500000
+        $x("//*[@name='credit_sum']").setValue("2500000");
+
+//Заполнить поле срок кредита 7
+        $x("//*[@name='period']").setValue("7");
+
+//Заполнить поле процентная ставка 15
+        $x("//*[@name='percent']").setValue("15");
+
+// Нажать кнопку расчитать
+        $x("//input[@type='submit']")
+                .shouldBe(clickable)
+                .click();
+
+// Проверить что переплата равна 62,09%
+        $x("//div[contains(@class, 'calc-result-value result-placeholder-overpayment')]")
+                .shouldBe(visible)
+                .shouldHave(text("62,09"));
+    }
 }
